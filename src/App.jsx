@@ -1,9 +1,15 @@
-import Home from "./pages/Home";
+import { Navbar } from "./components";
+import { Route, Routes } from "react-router-dom";
+import { Home, Store } from "./pages";
 
 const App = () => {
   return (
     <main>
-      <Home />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/store" element={<Store />} />
+      </Routes>
     </main>
   );
 };
