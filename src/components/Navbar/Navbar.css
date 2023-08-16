@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
-    li {
-        @apply hover:text-white
-    }
+  li {
+    @apply max-xl:py-7 transition hover:text-white cursor-pointer;
+  }
+}
+
+@layer components {
+  .menu-style {
+    @apply mx-6 font-normal text-xl text-[#2e2929];
+  }
 }
