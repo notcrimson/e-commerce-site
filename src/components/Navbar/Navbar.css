@@ -4,7 +4,7 @@
 
 @layer base {
   li {
-    @apply max-xl:py-7 transition hover:text-white cursor-pointer;
+    @apply max-xl:py-7  hover:text-white cursor-pointer;
   }
 }
 
@@ -12,4 +12,5 @@
   .menu-style {
     @apply mx-6 font-normal text-xl text-[#2e2929];
   }
+  
 }

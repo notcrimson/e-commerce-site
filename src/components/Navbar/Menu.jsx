@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const MenuElement = ({ name }) => {
+const MenuElement = ({ name, click }) => {
   return (
-    <li>
+    <li onClick={click}>
       <Link
-        className="max-xl:py-[29px] max-xl:px-[59px] transition max-xl:hover:bg-secondary duration-200 ease-in"
+        className="max-xl:p-[29px] transition max-xl:hover:underline duration-200 ease-in"
         to={"/" + `${name}`}
       >
         {name}
@@ -16,17 +16,22 @@ const MenuElement = ({ name }) => {
 
 MenuElement.propTypes = {
   name: PropTypes.string.isRequired,
+  click: PropTypes.func,
 };
 
-const Menu = () => {
+const Menu = ({ onClick }) => {
   return (
     <>
-      <ul className="w-full flex max-xl:flex-col justify-between items-center xl:gap-9 ">
-        <MenuElement name="Store" />
-        <MenuElement name="Store" />
+      <ul className="flex max-xl:flex-col items-center xl:gap-9 xl:w-full max-xl:w-screen relative max-xl:bg-secondary-300 max-xl:left-[96px]">
+        <MenuElement click={onClick} name="Store" />
+        <MenuElement click={onClick} name="Store" />
       </ul>
     </>
   );
+};
+
+Menu.propTypes = {
+  onClick: PropTypes.func,
 };
 
 export default Menu;

@@ -6,12 +6,18 @@ export default {
     extend: {
       colors: {
         primary: "#00040f",
-        secondary: "#e5989b",
+        secondary: {
+          300: "#ffc7c9",
+          500: "#e5989b",
+        },
         dimWhite: "rgba(255, 255, 255, 0.7)",
         dimBlue: "rgba(9, 151, 124, 0.1)",
       },
       fontFamily: {
         manrope: ["Manrope", "sans-serif"],
+      },
+      fontWeight: {
+        fine: "500",
       },
     },
     screens: {

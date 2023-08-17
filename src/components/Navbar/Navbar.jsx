@@ -1,50 +1,49 @@
 import { Link } from "react-router-dom";
 import Menu from "./Menu";
 import "./Navbar.css";
-import shoppingCart from "../../assets/shoppingCart.png";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [active, setActive] = useState("");
 
   return (
-    <nav className="flex flex-row justify-between items-center bg-secondary w-full py-8">
-      <Link to="/" className="hover:text-white ">
+    <nav className="flex flex-row justify-between items-center bg-secondary-500 w-full py-8 sticky top-0 z-20 px-6">
+      <Link
+        onClick={
+          (() => setToggleMenu(false),
+          () => {
+            setActive("");
+            window.scrollTo(0, 0);
+          })
+        }
+        to="/"
+        className="hover:text-white"
+      >
         Home
       </Link>
       <div className="menu-style max-xl:hidden">
         <Menu />
       </div>
-      <div className=" xl:hidden max-xl:flex justify-end items-center flex-col text-end  p-2 right-20 absolute">
+      <div
+        onClick={() => setToggleMenu(!toggleMenu)}
+        className=" xl:hidden max-xl:flex justify-start items-end flex-col text-start mx-4 absolute right-20"
+      >
         {toggleMenu ? (
-          <RiCloseLine
-            className="transition duration-300 hover:text-white"
-            size={27}
-            onClick={() => setToggleMenu(false)}
-          />
+          <RiCloseLine className="icon_trans-white" size={27} />
         ) : (
-          <RiMenu3Line
-            className="transition duration-300 hover:text-white"
-            size={27}
-            onClick={() => setToggleMenu(true)}
-          />
+          <RiMenu3Line className="icon_trans-white" size={27} />
         )}
         {toggleMenu && (
-          <div
-            onClick={() => setToggleMenu(false)}
-            className="  flex flex-col justify-start items-start text-start absolute top-[67px] w-40  bg-[#ffc7c9]"
-          >
-            <Menu />
+          <div className="absolute top-[59px] ">
+            <Menu onClick={() => setToggleMenu(false)} />
           </div>
         )}
       </div>
       <div className="shopping-cart">
-        <img
-          src={shoppingCart}
-          alt="shoppingCart"
-          className="w-7 mx-6 transition hover: cursor-pointer"
-        />
+        <FaShoppingCart className="icon_trans-white text-black" size={27} />
       </div>
     </nav>
   );
