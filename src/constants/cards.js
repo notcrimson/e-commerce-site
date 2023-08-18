@@ -23,6 +23,12 @@ const cards = [
     description: "This item is so and so.",
     img: "image4",
   },
+  {
+    id: 5,
+    name: "Item5",
+    description: "This item is so and so.",
+    img: "image5",
+  },
 ];
 
 export { cards };
