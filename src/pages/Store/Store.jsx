@@ -8,7 +8,10 @@ import "./store.css";
 import clouds2 from "../../assets/clouds2.jpg";
 
 const Store = () => {
-  const [filterToggle, setfilterToggle] = useState(false);
+  const [filterToggle, setFilterToggle] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
+  // TODO: create the search component
 
   return (
     <div
@@ -18,18 +21,20 @@ const Store = () => {
         Store
       </h1>
       <div className="px-[4rem] bg-white pt-16 pb-4">
-        <div className="store__heading w-full flex justify-center "></div>
         <div className="store__content-filter  flex justify-between text-center items-center">
           <div className="toggle_filter-btns">
-            <div onClick={() => setfilterToggle(!filterToggle)} className="icon_trans-op">
+            <div onClick={() => setFilterToggle(!filterToggle)} className="icon_trans-op">
               {filterToggle ? <RiCloseLine size={30} /> : <RiFilter2Fill size={30} />}
             </div>
           </div>
           <div className="flex flex-row gap-2 text-left items-center">
             <input
+              onChange={(e) => setSearchText(e.target.value)}
               placeholder="Search"
               className="border-[1px] border-solid border-neutral-950 rounded-full text-left py-1 px-4"
-            ></input>
+            >
+              {console.log(`input: ${searchText}`)}
+            </input>
             <GrSearch className="mb-1 icon_trans-op" size={23} />
           </div>
         </div>
