@@ -19,6 +19,9 @@ export default {
       fontWeight: {
         fine: "500",
       },
+      backgroundImage: {
+        clouds: "url('/src/assets/clouds2.jpg')",
+      },
     },
     screens: {
       xs: "480px",
