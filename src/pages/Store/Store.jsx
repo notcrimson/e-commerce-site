@@ -9,6 +9,7 @@ import Filters from "../../components/Filters";
 
 //TODO: create the handleSearch component
 //TODO: filters
+//TODO: turn off all filters
 
 const Store = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);

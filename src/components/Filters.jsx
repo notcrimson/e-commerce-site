@@ -29,31 +29,44 @@ const Filters = ({
         let temp = data.filter((card) => card.type === selectedType);
         return temp;
       });
+
       setFilteredItems(tempItems.flat());
     } else {
       setFilteredItems([...data]);
     }
   };
 
-  Filters.propTypes = {
-    data: PropTypes.any,
-    selectedFilters: PropTypes.any,
-    setSelectedFilters: PropTypes.any,
-    filteredItems: PropTypes.any,
-    setFilteredItems: PropTypes.any,
+  const handleFilterToggle = () => {
+    selectedFilters.forEach((type) => {
+      document.getElementById(type).checked = false;
+    });
+    selectedFilters.length !== 0 && setSelectedFilters([]);
   };
 
   return (
     <div className="flex flex-col">
+      <button
+        type="button"
+        className=" border border-solid border-black rounded-full px-2"
+        onClick={handleFilterToggle}
+      >
+        Turn off filters
+      </button>
       {types?.map((type) => (
         <div key={type} className=" flex flex-row gap-2">
-          <input onChange={() => handleFilterChecked(type)} type="checkbox" />
+          <input value="0" id={type} onChange={() => handleFilterChecked(type)} type="checkbox" />
           <h1>{type}</h1>
-          {/* <button>{type}</button> */}
         </div>
       ))}
     </div>
   );
 };
 
+Filters.propTypes = {
+  data: PropTypes.any,
+  selectedFilters: PropTypes.any,
+  setSelectedFilters: PropTypes.any,
+  filteredItems: PropTypes.any,
+  setFilteredItems: PropTypes.any,
+};
 export default Filters;
