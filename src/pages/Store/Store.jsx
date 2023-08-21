@@ -7,6 +7,7 @@ import Products from "../../components/Product/Products";
 import "./store.css";
 import Filters from "../../components/Filters";
 import api from "../../api/posts";
+import axios from "axios";
 
 //TODO: create the handleSearch component
 //TODO: filters
@@ -17,15 +18,58 @@ const Store = () => {
 
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   const [filterToggle, setFilterToggle] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [limit, setLimit] = useState(6);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get(`?limit=${limit}`);
+
+        const categories = await api.get("/categories");
+        setCategories(categories.data);
+        setProducts(response.data.products);
+        setFilteredItems(response.data.products);
+      } catch (error) {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  // TODO: AGADGAG
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await api.get("?limit=100");
-        setProducts(response.data.products);
+        // const response = await api.get(`?limit= ${limit}`);
+        let response;
+        if (selectedFilters.length === categories.length) {
+          response = await api.get(`?limit= ${limit}`);
+        } else {
+          response = await api.get(`/category/${selectedFilters[0]}`);
+        }
+
+        // setProducts(response.data.products);
         setFilteredItems(response.data.products);
         console.log(products);
       } catch (error) {
@@ -49,10 +93,14 @@ const Store = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [limit, selectedFilters]);
 
   const handleSearch = (data) => {
     return data.filter((card) => card.title.toLowerCase().includes(searchText.toLowerCase()));
+  };
+
+  const handleShowMore = () => {
+    setLimit(() => limit + 6);
   };
 
   return (
@@ -84,6 +132,7 @@ const Store = () => {
       >
         <Filters
           data={products}
+          categories={categories}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
           filteredItems={filteredItems}
@@ -91,12 +140,18 @@ const Store = () => {
         />
       </div>
 
-      <div className="px-[2rem] py-[2rem] store__section-content flex bg-white">
+      <div className=" bg-white px-[2rem] py-[2rem] store__section-content flex flex-col ">
         <div className="bg-clouds  bg-lime-700/20 bg-blend-overlay  rounded-xl p-[2rem]  bg-no-repeat bg-cover  w-full h-full">
           <div className="store__section-content-container gap-4">
-            <Products data={handleSearch(filteredItems)} />
+            <Products data={filteredItems} />
           </div>
         </div>
+        <button
+          onClick={handleShowMore}
+          className="mt-[1rem] border border-solid border-black rounded-full"
+        >
+          ff
+        </button>
       </div>
     </div>
   );

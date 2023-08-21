@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 const Filters = ({
   data,
+  categories,
   selectedFilters,
   setSelectedFilters,
   filteredItems,
   setFilteredItems,
 }) => {
-  let types = [...new Set(data.map((card) => card.category))];
+  // let categories = [...new Set(data.map((card) => card.category))];
 
   const handleFilterChecked = (selectedType) => {
     if (selectedFilters.includes(selectedType)) {
@@ -54,7 +55,7 @@ const Filters = ({
         Turn off filters
       </button>
       <div className="grid grid-rows-4 grid-flow-col  gap-2">
-        {types?.map((type) => (
+        {categories?.map((type) => (
           <div key={type} className=" flex flex-row items-center gap-2 px-2">
             <input value="0" id={type} onChange={() => handleFilterChecked(type)} type="checkbox" />
             <h1>{type}</h1>
@@ -66,8 +67,9 @@ const Filters = ({
 };
 
 Filters.propTypes = {
-  data: PropTypes.any,
-  selectedFilters: PropTypes.any,
+  data: PropTypes.array,
+  categories: PropTypes.array,
+  selectedFilters: PropTypes.array,
   setSelectedFilters: PropTypes.any,
   filteredItems: PropTypes.any,
   setFilteredItems: PropTypes.any,
