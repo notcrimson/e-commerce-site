@@ -1,13 +1,7 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Filters = ({
-  data,
-  selectedFilters,
-  setSelectedFilters,
-  filteredItems,
-  setFilteredItems,
-}) => {
+const Filters = ({ data, selectedFilters, setSelectedFilters, products, setProducts }) => {
   let types = [...new Set(data.map((card) => card.category))];
 
   const handleFilterChecked = (selectedType) => {
@@ -31,9 +25,9 @@ const Filters = ({
         return temp;
       });
 
-      setFilteredItems(tempItems.flat());
+      setProducts(tempItems.flat());
     } else {
-      setFilteredItems([...data]);
+      setProducts([...data]);
     }
   };
 
@@ -69,7 +63,7 @@ Filters.propTypes = {
   data: PropTypes.any,
   selectedFilters: PropTypes.any,
   setSelectedFilters: PropTypes.any,
-  filteredItems: PropTypes.any,
-  setFilteredItems: PropTypes.any,
+  products: PropTypes.any,
+  setProducts: PropTypes.any,
 };
 export default Filters;

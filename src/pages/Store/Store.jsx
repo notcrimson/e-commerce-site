@@ -14,8 +14,6 @@ import api from "../../api/posts";
 
 const Store = () => {
   const [products, setProducts] = useState([]);
-
-  const [filteredItems, setFilteredItems] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   const [filterToggle, setFilterToggle] = useState(false);
@@ -25,8 +23,8 @@ const Store = () => {
     const fetchPosts = async () => {
       try {
         const response = await api.get("?limit=100");
+        
         setProducts(response.data.products);
-        setFilteredItems(response.data.products);
         console.log(products);
       } catch (error) {
         if (error.response) {
@@ -48,7 +46,7 @@ const Store = () => {
       }
     };
 
-// TODO: FAFAF
+    // TODO: FAFAF
 
     fetchPosts();
   }, []);
@@ -88,15 +86,15 @@ const Store = () => {
           data={products}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
-          filteredItems={filteredItems}
-          setFilteredItems={setFilteredItems}
+          products={products}
+          setProducts={setProducts}
         />
       </div>
 
       <div className="px-[2rem] py-[2rem] store__section-content flex bg-white">
         <div className="bg-clouds  bg-lime-700/20 bg-blend-overlay  rounded-xl p-[2rem]  bg-no-repeat bg-cover  w-full h-full">
           <div className="store__section-content-container gap-4">
-            <Products data={handleSearch(filteredItems)} />
+            <Products data={handleSearch(products)} />
           </div>
         </div>
       </div>
