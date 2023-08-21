@@ -48,6 +48,8 @@ const Store = () => {
       }
     };
 
+// TODO: FAFAF
+
     fetchPosts();
   }, []);
 
