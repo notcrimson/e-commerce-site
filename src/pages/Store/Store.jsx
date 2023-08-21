@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { GrSearch } from "react-icons/gr";
 import { RiCloseLine, RiFilter2Fill } from "react-icons/ri";
 
-import { cards } from "../../constants/cards";
+// import { cards } from "../../constants/cards";
 import Products from "../../components/Product/Products";
 import "./store.css";
 import Filters from "../../components/Filters";
@@ -30,7 +30,6 @@ const Store = () => {
         const categories = await api.get("/categories");
         setCategories(categories.data);
         setProducts(response.data.products);
-        setFilteredItems(response.data.products);
       } catch (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
@@ -61,14 +60,13 @@ const Store = () => {
       try {
         // const response = await api.get(`?limit= ${limit}`);
         let response;
-        if (selectedFilters.length === categories.length) {
+        if (selectedFilters.length === categories.length || selectedFilters.length === 0) {
           response = await api.get(`?limit= ${limit}`);
         } else {
           response = await api.get(`/category/${selectedFilters[0]}`);
         }
 
-        // setProducts(response.data.products);
-        setFilteredItems(response.data.products);
+        setProducts(response.data.products);
         console.log(products);
       } catch (error) {
         if (error.response) {
@@ -89,8 +87,6 @@ const Store = () => {
         console.log(error.config);
       }
     };
-
-    // TODO: FAFAF
 
     fetchPosts();
   }, [limit, selectedFilters]);
@@ -135,7 +131,6 @@ const Store = () => {
           categories={categories}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
-          products={products}
           setProducts={setProducts}
         />
       </div>
@@ -144,7 +139,6 @@ const Store = () => {
         <div className="bg-clouds  bg-lime-700/20 bg-blend-overlay  rounded-xl p-[2rem]  bg-no-repeat bg-cover  w-full h-full">
           <div className="store__section-content-container gap-4">
             <Products data={handleSearch(products)} />
-            <Products data={filteredItems} />
           </div>
         </div>
         <button

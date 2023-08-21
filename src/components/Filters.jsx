@@ -1,14 +1,7 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Filters = ({
-  data,
-  categories,
-  selectedFilters,
-  setSelectedFilters,
-  filteredItems,
-  setFilteredItems,
-}) => {
+const Filters = ({ data, categories, selectedFilters, setSelectedFilters, setProducts }) => {
   // let categories = [...new Set(data.map((card) => card.category))];
 
   const handleFilterChecked = (selectedType) => {
@@ -22,21 +15,21 @@ const Filters = ({
 
   // console.log(selectedFilters);
   useEffect(() => {
+    const filterItems = () => {
+      if (selectedFilters.length > 0) {
+        let tempItems = selectedFilters.map((selectedType) => {
+          let temp = data.filter((card) => card.category === selectedType);
+          return temp;
+        });
+
+        setProducts(tempItems.flat());
+      } else {
+        // setSelectedFilters(categories);
+        setProducts([...data]);
+      }
+    };
     filterItems();
   }, [selectedFilters]);
-
-  const filterItems = () => {
-    if (selectedFilters.length > 0) {
-      let tempItems = selectedFilters.map((selectedType) => {
-        let temp = data.filter((card) => card.category === selectedType);
-        return temp;
-      });
-
-      setFilteredItems(tempItems.flat());
-    } else {
-      setFilteredItems([...data]);
-    }
-  };
 
   const handleFilterToggle = () => {
     selectedFilters.forEach((type) => {
@@ -71,7 +64,6 @@ Filters.propTypes = {
   categories: PropTypes.array,
   selectedFilters: PropTypes.array,
   setSelectedFilters: PropTypes.any,
-  filteredItems: PropTypes.any,
-  setFilteredItems: PropTypes.any,
+  setProducts: PropTypes.any,
 };
 export default Filters;
