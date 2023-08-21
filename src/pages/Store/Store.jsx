@@ -15,8 +15,6 @@ import axios from "axios";
 
 const Store = () => {
   const [products, setProducts] = useState([]);
-
-  const [filteredItems, setFilteredItems] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -92,6 +90,8 @@ const Store = () => {
       }
     };
 
+    // TODO: FAFAF
+
     fetchPosts();
   }, [limit, selectedFilters]);
 
@@ -135,14 +135,15 @@ const Store = () => {
           categories={categories}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
-          filteredItems={filteredItems}
-          setFilteredItems={setFilteredItems}
+          products={products}
+          setProducts={setProducts}
         />
       </div>
 
       <div className=" bg-white px-[2rem] py-[2rem] store__section-content flex flex-col ">
         <div className="bg-clouds  bg-lime-700/20 bg-blend-overlay  rounded-xl p-[2rem]  bg-no-repeat bg-cover  w-full h-full">
           <div className="store__section-content-container gap-4">
+            <Products data={handleSearch(products)} />
             <Products data={filteredItems} />
           </div>
         </div>
