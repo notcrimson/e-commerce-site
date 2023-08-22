@@ -56,16 +56,26 @@ const Store = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        // const response = await api.get(`?limit= ${limit}`);
-        let response;
         if (selectedFilters.length === categories.length || selectedFilters.length === 0) {
-          response = await api.get(`?limit= ${limit}`);
+          const response = (await api.get(`?limit=${limit}`)).data.products;
+          setProducts(response);
         } else {
-          response = await api.get(`/category/${selectedFilters[0]}`);
-        }
+          axios
+            .all(
+              selectedFilters.map((category) =>
+                api.get(`/category/${category}?limit=${limit / selectedFilters.length}`)
+              )
+            )
+            .then((responses) => {
+              let data = [];
 
-        setProducts(response.data.products);
-        console.log(products);
+              responses.forEach((resp) => {
+                data.push(...resp.data.products);
+              });
+              setProducts(data);
+            });
+        }
+        
       } catch (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
