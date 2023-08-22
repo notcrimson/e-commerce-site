@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { GrSearch } from "react-icons/gr";
 import { RiCloseLine, RiFilter2Fill } from "react-icons/ri";
 
@@ -9,12 +9,12 @@ import Filters from "../../components/Filters";
 import api from "../../api/posts";
 import axios from "axios";
 
-//TODO: create the handleSearch component
-//TODO: filters
-//TODO: turn off all filters
+//TODO: product pages
+//TODO: multi-fetch using axios.all()
 
 const Store = () => {
   const [products, setProducts] = useState([]);
+
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -52,8 +52,6 @@ const Store = () => {
 
     fetchCategories();
   }, []);
-
-  // TODO: AGADGAG
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -95,6 +93,8 @@ const Store = () => {
     return data.filter((card) => card.title.toLowerCase().includes(searchText.toLowerCase()));
   };
 
+  const searchedProducts = useMemo(() => handleSearch(products), [searchText, products]);
+
   const handleShowMore = () => {
     setLimit(() => limit + 6);
   };
@@ -104,6 +104,7 @@ const Store = () => {
       <h1 className="heading1 absolute py-[18px] px-[50px] text-center bg-black text-white top-[16px] left-[50%] translate-x-[-50%]  mix-blend-multiply text-[96px] font-[800]">
         Store
       </h1>
+
       <div className="px-[4rem] bg-white pt-16 pb-4">
         <div className="store__content-filter  flex justify-between text-center items-center">
           <div className="toggle_filter-btns">
@@ -138,14 +139,14 @@ const Store = () => {
       <div className=" bg-white px-[2rem] py-[2rem] store__section-content flex flex-col ">
         <div className="bg-clouds  bg-lime-700/20 bg-blend-overlay  rounded-xl p-[2rem]  bg-no-repeat bg-cover  w-full h-full">
           <div className="store__section-content-container gap-4">
-            <Products data={handleSearch(products)} />
+            <Products data={searchedProducts} />
           </div>
         </div>
         <button
           onClick={handleShowMore}
           className="mt-[1rem] border border-solid border-black rounded-full"
         >
-          ff
+          Show More
         </button>
       </div>
     </div>

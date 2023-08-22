@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import React from "react";
 
-const Products = ({ data }) => {
+const Products = React.memo(({ data }) => {
   return (
     <>
       {data?.map((card) => (
@@ -45,8 +46,9 @@ const Products = ({ data }) => {
       ))}
     </>
   );
-};
+});
 
+Products.displayName = "Products";
 Products.propTypes = {
   data: PropTypes.array,
 };
