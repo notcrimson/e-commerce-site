@@ -9,9 +9,6 @@ import Filters from "../../components/Filters";
 import api from "../../api/posts";
 import axios from "axios";
 
-//TODO: product pages
-//TODO: multi-fetch using axios.all()
-
 const Store = () => {
   const [products, setProducts] = useState([]);
 
@@ -75,7 +72,6 @@ const Store = () => {
               setProducts(data);
             });
         }
-        
       } catch (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
@@ -162,5 +158,4 @@ const Store = () => {
     </div>
   );
 };
-
 export default Store;

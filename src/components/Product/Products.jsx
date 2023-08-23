@@ -7,7 +7,7 @@ const Products = React.memo(({ data }) => {
     <>
       {data?.map((card) => (
         <div key={card.id} className="w-full ">
-          <Link className="" to={`/product/${card.id}`}>
+          <Link to={`/product/${card.id}`} state={{ data: card }}>
             <div className=" group transition-all duration-300 bg-secondary-300/60 hover:bg-secondary-300 ease-in-out border border-none rounded-xl my-2 h-full w-full">
               <div
                 className="  px-[2rem] py-4  

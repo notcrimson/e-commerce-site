@@ -1,17 +1,22 @@
-import { cards } from "../constants/cards";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+
+//TODO: layot and style ProductPage
 
 const ProductPage = () => {
-  const { productID } = useParams();
+  const location = useLocation();
 
-  const singleProduct = cards.find((card) => card.id === parseInt(productID));
+  const product = location.state?.data;
+
+  // const { productID } = useParams();
+  // const singleProduct = products?.find((product) => product.id === parseInt(productID));
+  // console.log(singleProduct);
 
   return (
     <div className="section__padding">
       <div className="flex justify-center flex-col">
-        <h1>{singleProduct.name}</h1>
-        <p>{singleProduct.description}</p>
-        <p>{singleProduct.img}</p>
+        <h1>{product.title}</h1>
+        <p>{product.description}</p>
+        <img src={product.thumbnail} />
       </div>
     </div>
   );
