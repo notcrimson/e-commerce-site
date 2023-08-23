@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .img_border {
+    @apply p-2 border border-secondary-500 rounded-xl flex justify-center items-center w-[70px] h-[70px] object-center object-contain;
+  }
+}

@@ -9,6 +9,11 @@ import Filters from "../../components/Filters";
 import api from "../../api/posts";
 import axios from "axios";
 
+
+//TODO: TRANSFER THE USEEFFECT ON MOUNT TO APP.JSX SO IT CAN FETCH FROM THERE
+//TODO: ADD PROP TO STORE DATA TO PASS DOWN THE FETCHED RESULTS FROM APP.JSX
+
+
 const Store = () => {
   const [products, setProducts] = useState([]);
 
@@ -106,7 +111,7 @@ const Store = () => {
   };
 
   return (
-    <div className="store__section py-[6rem]  bg-clouds bg-lime-700/20 bg-blend-overlay h-full relative bg-no-repeat bg-contain">
+    <div className="store__section page__background relative ">
       <h1 className="heading1 absolute py-[18px] px-[50px] text-center bg-black text-white top-[16px] left-[50%] translate-x-[-50%]  mix-blend-multiply text-[96px] font-[800]">
         Store
       </h1>
