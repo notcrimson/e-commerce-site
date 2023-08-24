@@ -12,6 +12,7 @@ import { RatingStars, About, CartButtons } from "./components";
 const ProductPage = () => {
   // const location = useLocation();
   // const product = location.state?.data;
+  window.scrollTo(0, 0);
 
   const { productID } = useParams();
   const [product, setProduct] = useState([]);
@@ -49,10 +50,11 @@ const ProductPage = () => {
   // console.log(singleProduct);
 
   return (
-    <div className="page__background">
-      <div className=" bg-white border-none rounded-xl flex justify-center flex-col pt-10 pb-4 px-[4rem] lg:mx-[10%] sm:mx-[4%] xs:mx-[2%]">
+    <div className="relative">
+      <div className="page__background" />
+      <div className="top-[6rem]  relative bg-white border-none rounded-xl mb-10 flex justify-center flex-col pt-10 pb-4 px-[4rem] marginx_query">
         <h1 className="text-2xl mb-[1rem] capitalize">{product.title}</h1>
-        <div className="flex justify-between  sm:flex-row xs:flex-col">
+        <div className="flex justify-between sm:flex-row xs:flex-col">
           <div className="#images# mb-6">
             <img src={imgClicked} className="w-[400px] h-[400px] object-contain mb-4" />
             <div className="images flex gap-2 w-[400px] ">
@@ -77,7 +79,7 @@ const ProductPage = () => {
             </div>
           </div>
 
-          <div className="#prices# border border-secondary-300 rounded-xl p-[1rem] mb-4 flex md:flex-row-reverse sm:flex-col gap-4">
+          <div className="#prices# border h-full border-secondary-300 rounded-xl p-[1rem] mb-4 flex justify-between md:flex-row-reverse sm:flex-col gap-4">
             <div>
               <h1 className="text-secondary-500 font-extrabold px-2 border-none rounded-xl text-2xl">
                 {((product.price * (100 - product.discountPercentage)) / 100).toFixed(2)}
@@ -100,6 +102,8 @@ const ProductPage = () => {
         <h1 className="text-xl font-bold">Description</h1>
         <p>{product.description}</p>
       </div>
+      <div className="bg-white h-[250px] z-1 relative top-[7rem] marginx_query rounded-xl"></div>
+      <div className="h-[6rem] top-[6rem] relative"></div>
     </div>
   );
 };
