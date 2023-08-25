@@ -12,7 +12,6 @@ import { RatingStars, About, CartButtons } from "./components";
 const ProductPage = () => {
   // const location = useLocation();
   // const product = location.state?.data;
-  window.scrollTo(0, 0);
 
   const { productID } = useParams();
   const [product, setProduct] = useState([]);
@@ -44,6 +43,7 @@ const ProductPage = () => {
       }
     };
     fetchProductById();
+    window.scrollTo(0, 0);
   }, []);
 
   // const singleProduct = products?.find((product) => product.id === parseInt(productID));

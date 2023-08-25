@@ -7,4 +7,7 @@
   .marginx_query {
     @apply lg:mx-[10%] sm:mx-[4%] xs:mx-[2%];
   }
+  .productpage__cartbuttons-changeItems {
+    @apply px-4 bg-secondary-300 border border-secondary-300;
+  }
 }
