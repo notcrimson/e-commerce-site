@@ -4,10 +4,14 @@ import "./Navbar.css";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { resetCart } from "../../redux/cartSlice";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [active, setActive] = useState("");
+  const products = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
 
   return (
     <nav className="flex flex-row justify-between items-center bg-secondary-500 w-full py-8 sticky top-0 z-20 px-6">
@@ -29,7 +33,7 @@ const Navbar = () => {
       </div>
       <div
         onClick={() => setToggleMenu(!toggleMenu)}
-        className=" xl:hidden max-xl:flex justify-start items-end flex-col text-start mx-4 absolute right-20"
+        className=" xl:hidden max-xl:flex justify-start items-end flex-col text-start mx-4 absolute right-40"
       >
         {toggleMenu ? (
           <RiCloseLine className="icon_trans-white" size={27} />
@@ -42,8 +46,15 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <div className="shopping-cart">
+      <div className="shopping-cart flex gap-2 justify-center items-center">
         <FaShoppingCart className="icon_trans-white text-black" size={27} />
+        <p>{products.length}</p>
+        <button
+          className="border border-primary px-2 rounded-2xl"
+          onClick={() => dispatch(resetCart())}
+        >
+          clear cart
+        </button>
       </div>
     </nav>
   );

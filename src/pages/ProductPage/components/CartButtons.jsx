@@ -1,44 +1,77 @@
 import { useEffect, useReducer, useState } from "react";
 import "../productpage.css";
+import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import { changeItems, delItem } from "../../../redux/cartSlice";
+// const reducer = (state, action) => {
+//   switch (action.type) {
+//     case "add": {
+//       return { itemsAdded: state.itemsAdded + 1 };
+//     }
+//     case "delete": {
+//       return { itemsAdded: state.itemsAdded - 1 };
+//     }
+//   }
+// };
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "add": {
-      return { itemsAdded: state.itemsAdded + 1 };
-    }
-    case "delete": {
-      return { itemsAdded: state.itemsAdded - 1 };
-    }
-  }
-};
+const CartButtons = ({ product }) => {
+  const products = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
 
-const CartButtons = () => {
-  const [addToCart, setAddToCart] = useState(false);
-  const [state, dispatch] = useReducer(reducer, { itemsAdded: null });
+  const [addToCart, setAddToCart] = useState();
+  const [quantity, setQuantity] = useState(null);
+  // const [state, dispatch] = useReducer(reducer, { itemsAdded: null });
+
+  // useEffect(() => {
+  //   state.itemsAdded === 0 && setAddToCart(false);
+  // }, [state.itemsAdded]);
+
+  // const handleChangeCartClick = (e) => {
+  //   // e.target.name === "delItem" && dispatch({ type: "delete" }) ;
+  //   if (e.target.name === "delItem") {
+  //     dispatch({ type: "delete" });
+  //     return;
+  //   }
+
+  //   e.target.name === "addToCart" && setAddToCart(!addToCart);
+  // };
 
   useEffect(() => {
-    state.itemsAdded === 0 && setAddToCart(false);
-  }, [state.itemsAdded]);
-
-  const handleChangeCartClick = (e) => {
-    // e.target.name === "delItem" && dispatch({ type: "delete" }) ;
-    if (e.target.name === "delItem") {
-      dispatch({ type: "delete" });
-      return;
+    if (quantity === 0) {
+      setAddToCart(false);
+      dispatch(delItem(product.id));
     }
-    dispatch({ type: "add" });
+
+    if (quantity !== 0) {
+      dispatch(
+        changeItems({
+          id: product.id,
+          title: product.title,
+          quantity: quantity,
+        })
+      );
+    }
+  }, [quantity]);
+
+  const handleChangeItems = (e) => {
+    // setQuantity((prev) => prev + 1);
+    e.target.name === "delItem"
+      ? setQuantity((prev) => prev - 1)
+      : e.target.name === "addToCart"
+      ? setQuantity((prev) => prev + 1)
+      : setQuantity((prev) => prev + 1);
+
     e.target.name === "addToCart" && setAddToCart(!addToCart);
   };
 
   return (
     <div>
-    
       <div className="flex justify-center items-center">
         {!addToCart ? (
           <button
             name="addToCart"
             type="button"
-            onClick={handleChangeCartClick}
+            onClick={handleChangeItems}
             className="border border-white rounded-full bg-secondary-300/70 px-4 py-2 hover:bg-secondary-300 w-full h-[44.5px]"
           >
             Add to Cart
@@ -47,15 +80,15 @@ const CartButtons = () => {
           <div className="text-[27px] flex flex-row justify-between items-center border border-secondary-300 w-full rounded-full">
             <button
               name="delItem"
-              onClick={handleChangeCartClick}
+              onClick={handleChangeItems}
               className="productpage__cartbuttons-changeItems rounded-s-full"
             >
               -
             </button>
-            <h1 className="text-base">{state.itemsAdded}</h1>
+            <h1 className="text-base">{quantity}</h1>
             <button
               name="addItem"
-              onClick={handleChangeCartClick}
+              onClick={handleChangeItems}
               className="productpage__cartbuttons-changeItems rounded-e-full"
             >
               +
@@ -65,6 +98,10 @@ const CartButtons = () => {
       </div>
     </div>
   );
+};
+
+CartButtons.propTypes = {
+  product: PropTypes.array,
 };
 
 export default CartButtons;

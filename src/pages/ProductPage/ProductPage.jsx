@@ -94,7 +94,7 @@ const ProductPage = () => {
                 </h1>
               </div>
               <RatingStars rating={product.rating} />
-              <CartButtons />
+              <CartButtons product={product} />
             </div>
             <About about={product} />
           </div>
