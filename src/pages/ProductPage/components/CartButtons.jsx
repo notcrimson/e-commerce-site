@@ -17,8 +17,15 @@ import { changeItems, delItem } from "../../../redux/cartSlice";
 const CartButtons = ({ product }) => {
   const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
+  const prod = products.find((pr) => pr.id === product.id) ?? false;
+  console.log(product.id);
+  console.log(prod);
+  console.log(prod ?? false);
+  console.log(prod.inCart);
+  let v = prod.inCart;
 
-  const [addToCart, setAddToCart] = useState();
+  const [addToCart, setAddToCart] = useState(v);
+
   const [quantity, setQuantity] = useState(null);
   // const [state, dispatch] = useReducer(reducer, { itemsAdded: null });
 
@@ -37,19 +44,20 @@ const CartButtons = ({ product }) => {
   // };
 
   useEffect(() => {
-    if (quantity === 0) {
-      setAddToCart(false);
-      dispatch(delItem(product.id));
-    }
-
-    if (quantity !== 0) {
-      dispatch(
-        changeItems({
-          id: product.id,
-          title: product.title,
-          quantity: quantity,
-        })
-      );
+    if (quantity !== null) {
+      if (quantity !== 0) {
+        dispatch(
+          changeItems({
+            id: product.id,
+            title: product.title,
+            quantity: quantity,
+            inCart: addToCart,
+          })
+        );
+      } else {
+        setAddToCart(false);
+        dispatch(delItem(product.id));
+      }
     }
   }, [quantity]);
 
