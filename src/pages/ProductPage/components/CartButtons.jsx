@@ -15,18 +15,25 @@ import { changeItems, delItem } from "../../../redux/cartSlice";
 // };
 
 const CartButtons = ({ product }) => {
-  const products = useSelector((state) => state.cart.products);
+  const cartProduct = useSelector((state) => {
+    return state.cart.products.find((pr) => pr.id === product.id);
+  });
+
   const dispatch = useDispatch();
-  const prod = products.find((pr) => pr.id === product.id) ?? false;
-  console.log(product.id);
-  console.log(prod);
-  console.log(prod ?? false);
-  console.log(prod.inCart);
-  let v = prod.inCart;
 
-  const [addToCart, setAddToCart] = useState(v);
-
+  const [addToCart, setAddToCart] = useState(false);
   const [quantity, setQuantity] = useState(null);
+
+  useEffect(() => {
+    if (cartProduct) {
+      setAddToCart(cartProduct.inCart);
+      setQuantity(cartProduct.quantity);
+    } else {
+      setAddToCart(false);
+      setQuantity(null);
+    }
+  }, [cartProduct]);
+
   // const [state, dispatch] = useReducer(reducer, { itemsAdded: null });
 
   // useEffect(() => {
@@ -109,7 +116,7 @@ const CartButtons = ({ product }) => {
 };
 
 CartButtons.propTypes = {
-  product: PropTypes.array,
+  product: PropTypes.object,
 };
 
 export default CartButtons;
