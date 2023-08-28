@@ -46,9 +46,16 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <div className="shopping-cart flex gap-2 justify-center items-center">
-        <FaShoppingCart className="icon_trans-white text-black" size={27} />
-        <p>{products.length}</p>
+      <div className="shopping-cart flex  justify-center items-center relative gap-4 ">
+        <div className="relative cursor-pointer transition-all duration-300 group ease-out">
+          <FaShoppingCart className=" text-black group-hover:text-white z-0" size={27} />
+          <p
+            className=" text-xs text-center absolute z-1  bottom-[18px] left-[14px] bg-red-700
+          w-4 border border-none rounded-full text-white  group-hover:bg-black"
+          >
+            {products.length}
+          </p>
+        </div>
         <button
           className="border border-primary px-2 rounded-2xl"
           onClick={() => dispatch(resetCart())}
