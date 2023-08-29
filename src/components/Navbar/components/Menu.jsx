@@ -22,7 +22,7 @@ MenuElement.propTypes = {
 const Menu = ({ onClick }) => {
   return (
     <>
-      <ul className="flex max-xl:flex-col items-center xl:gap-9 xl:w-full max-xl:w-screen relative max-xl:bg-secondary-300 max-xl:left-[96px]">
+      <ul className="flex max-xl:flex-col items-center xl:gap-9 xl:w-full max-xl:w-screen relative max-xl:bg-secondary-300 max-xl:left-[80px]">
         <MenuElement click={onClick} name="Store" />
         <MenuElement click={onClick} name="Store" />
       </ul>

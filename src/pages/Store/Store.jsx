@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { GrSearch } from "react-icons/gr";
 import { RiCloseLine, RiFilter2Fill } from "react-icons/ri";
+import axios from "axios";
 
 // import { cards } from "../../constants/cards";
 import Products from "../../components/Product/Products";
 import "./store.css";
 import Filters from "../../components/Filters";
 import api from "../../api/posts";
-import axios from "axios";
 
 //TODO: TRANSFER THE USEEFFECT ON MOUNT TO APP.JSX SO IT CAN FETCH FROM THERE
 //TODO: ADD PROP TO STORE DATA TO PASS DOWN THE FETCHED RESULTS FROM APP.JSX

@@ -57,6 +57,10 @@ const CartButtons = ({ product }) => {
           changeItems({
             id: product.id,
             title: product.title,
+            thumbnail: product.thumbnail,
+            price: product.price,
+            discountPercentage: product.discountPercentage,
+            brand: product.brand,
             quantity: quantity,
             inCart: addToCart,
           })
@@ -116,7 +120,7 @@ const CartButtons = ({ product }) => {
 };
 
 CartButtons.propTypes = {
-  product: PropTypes.object,
+  product: PropTypes.array,
 };
 
 export default CartButtons;
