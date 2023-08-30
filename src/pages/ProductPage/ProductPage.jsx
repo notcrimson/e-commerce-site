@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import "./productpage.css";
 import api from "../../api/posts";
 import { RatingStars, About, CartButtons } from "./components";
+import { Price } from "../../components";
 
 //TODO: layot and style ProductPage
 //TODO: ADD PROP TO PRODUCTPAGE SO IT CAN RETURN THE FETCHED API RESULTS FROM APP.JSX
@@ -82,8 +83,7 @@ const ProductPage = () => {
           <div className="#prices# border h-full border-secondary-300 rounded-xl p-[1rem] mb-4 flex justify-between md:flex-row-reverse sm:flex-col gap-4">
             <div>
               <h1 className="text-secondary-500 font-extrabold px-2 border-none rounded-xl text-2xl">
-                {((product.price * (100 - product.discountPercentage)) / 100).toFixed(2)}
-                <span className="text-base"> &#36;</span>
+                <Price price={product.price} discountPercentage={product.discountPercentage} />
               </h1>
               <div className="flex items-center gap-2 text-lg px-[10px]">
                 <h1 className="">

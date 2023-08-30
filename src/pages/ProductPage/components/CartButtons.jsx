@@ -1,7 +1,8 @@
 import { useEffect, useReducer, useState } from "react";
-import "../productpage.css";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
+
+import "../productpage.css";
 import { changeItems, delItem } from "../../../redux/cartSlice";
 // const reducer = (state, action) => {
 //   switch (action.type) {
