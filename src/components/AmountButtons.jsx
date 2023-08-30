@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
-import { changeItems, delItem } from "../redux/cartSlice";
+import { changeItems } from "../redux/cartSlice";
 
 const AmountButtons = ({ product }) => {
   const dispatch = useDispatch();

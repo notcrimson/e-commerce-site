@@ -39,7 +39,7 @@ const ShoppingCart = () => {
                 <RiCloseLine
                   size={27}
                   onClick={onClose}
-                  className="cursor-pointer transition duration-300 hover:text-black/30 ease-in-out"
+                  className="cursor-pointer transition duration-150 hover:text-black/30 ease-in-out"
                 />
               </div>
               <ProductsInCart products={products} dispatch={dispatch} />

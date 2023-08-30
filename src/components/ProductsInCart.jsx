@@ -54,7 +54,7 @@ function ProductsInCart({ products, dispatch }) {
               <BsTrash3Fill
                 onClick={() => dispatch(delItem(product.id))}
                 size={18}
-                className="text-red-600 transintion  duration-300 cursor-pointer hover:text-secondary-500 active:text-secondary-300"
+                className="text-red-600 transintion  duration-150 cursor-pointer hover:text-secondary-500 active:text-secondary-300"
               />
             </div>
           ))}
