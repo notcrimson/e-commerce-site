@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const Price = ({ price, discountPercentage }) => {
   return (
-    <span>
+    <span className="w-full">
       {((price * (100 - discountPercentage)) / 100).toFixed(2)}
       <span className="text-base"> &#36;</span>
     </span>

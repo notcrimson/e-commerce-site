@@ -3,13 +3,9 @@ import { BsTrash3Fill } from "react-icons/bs";
 
 import { delItem, resetCart } from "../redux/cartSlice";
 import Price from "./Price";
-import { AmountButtons, CartButtons } from "../components";
+import { CartButtons } from "../components";
 
 function ProductsInCart({ products, dispatch }) {
-  // const discountPrice = (price, discountPercentage) => {
-  //   ((price * (100 - discountPercentage)) / 100).toFixed(2);
-  // };
-
   const sum = () => {
     const discountPrice = products?.map(
       (product) =>
@@ -41,20 +37,20 @@ function ProductsInCart({ products, dispatch }) {
             >
               <h1 className="text-center">{product.title}</h1>
               <div className="flex flex-row justify-between items-center">
-                <div className="w-[100px] h-[70px] flex items-center rounded-2xl p-2 flex-row">
+                <div className="w-[250px] h-[70px] flex items-center rounded-2xl p-2 flex-row">
                   <img src={product.thumbnail} className="object-cover w-full h-full" />
                 </div>
 
                 <CartButtons product={product} style="cart" />
 
-                <h1 className="text-center font-extrabold text-secondary-500">
+                <h1 className="text-center font-extrabold text-secondary-500 w-full">
                   <Price price={product.price} discountPercentage={product.discountPercentage} />
                 </h1>
               </div>
               <BsTrash3Fill
                 onClick={() => dispatch(delItem(product.id))}
                 size={18}
-                className="text-red-600 transintion  duration-150 cursor-pointer hover:text-secondary-500 active:text-secondary-300"
+                className="text-red-600 transintion duration-150 cursor-pointer hover:text-secondary-500 active:text-secondary-300"
               />
             </div>
           ))}

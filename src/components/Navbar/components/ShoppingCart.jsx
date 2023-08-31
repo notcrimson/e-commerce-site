@@ -30,20 +30,29 @@ const ShoppingCart = () => {
           </p>
         </div>
       </div>
-      <Transition show={isOpen} appear as={Fragment}>
-        <Dialog open={isOpen} as="div" className="static" onClose={onClose}>
+      <Transition show={isOpen}>
+        <Dialog as="div" className="absolute right-0" onClose={onClose}>
           <div className="fixed inset-0 bg-black bg-opacity-25 z-30" />
-          <div className="fixed inset-0 z-40 flex">
-            <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl">
-              <div className="flex flex-center justify-end px-2">
-                <RiCloseLine
-                  size={27}
-                  onClick={onClose}
-                  className="cursor-pointer transition duration-150 hover:text-black/30 ease-in-out"
-                />
-              </div>
-              <ProductsInCart products={products} dispatch={dispatch} />
-            </Dialog.Panel>
+          <div className="fixed inset-y-0 z-40 flex right-0">
+            <Transition.Child
+              enter="transition ease-in-out duration-500 transform"
+              enterFrom="translate-x-full"
+              enterTo="translate-x-0"
+              leave="transition ease-in-out duration-500 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="translate-x-full"
+            >
+              <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl ">
+                <div className="flex flex-center justify-end px-2">
+                  <RiCloseLine
+                    size={27}
+                    onClick={onClose}
+                    className="cursor-pointer transition duration-150 hover:text-black/30 ease-in-out"
+                  />
+                </div>
+                <ProductsInCart products={products} dispatch={dispatch} />
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
         </Dialog>
       </Transition>
