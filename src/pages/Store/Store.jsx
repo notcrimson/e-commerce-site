@@ -8,6 +8,7 @@ import Products from "../../components/Product/Products";
 import "./store.css";
 import Filters from "../../components/Filters";
 import api from "../../api/posts";
+import { Dialog, Transition } from "@headlessui/react";
 
 //TODO: TRANSFER THE USEEFFECT ON MOUNT TO APP.JSX SO IT CAN FETCH FROM THERE
 //TODO: ADD PROP TO STORE DATA TO PASS DOWN THE FETCHED RESULTS FROM APP.JSX
@@ -133,19 +134,30 @@ const Store = () => {
             </div>
           </div>
         </div>
-        <div
-          className={`${
-            filterToggle ? `flex` : `hidden`
-          }   flex-col py-6 left-0 w-full bg-gradient text-left items-start pl-[100px] gap-4 `}
-        >
-          <Filters
-            data={products}
-            categories={categories}
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-            setProducts={setProducts}
-          />
-        </div>
+        <Transition show={filterToggle}>
+          <Transition.Child
+            enter="transition ease-in-out duration-500 "
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in-out duration-500 "
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <div
+              className={`${
+                filterToggle ? `flex` : `hidden`
+              }   flex-col py-6 left-0 w-full bg-gradient text-left items-start pl-[100px] gap-4 `}
+            >
+              <Filters
+                data={products}
+                categories={categories}
+                selectedFilters={selectedFilters}
+                setSelectedFilters={setSelectedFilters}
+                setProducts={setProducts}
+              />
+            </div>
+          </Transition.Child>
+        </Transition>
 
         <div className=" bg-white px-[2rem] py-[2rem] store__section-content flex flex-col ">
           <div className="bg-clouds  bg-lime-700/20 bg-blend-overlay  rounded-xl p-[2rem]  bg-no-repeat bg-cover  w-full h-full">
