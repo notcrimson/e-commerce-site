@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { changeItems } from "../redux/cartSlice";
 
+//TODO: DELETE THIS COMPONENT CAUSE CARTBUTTON DOES THE SAME
+
 const AmountButtons = ({ product }) => {
   const dispatch = useDispatch();
   const addItem = () => {

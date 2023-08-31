@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+
 import "./productpage.css";
 import api from "../../api/posts";
-import { RatingStars, About, CartButtons } from "./components";
+import { RatingStars, About } from "./components";
+import { CartButtons } from "../../components";
 import { Price } from "../../components";
 
 //TODO: layot and style ProductPage
@@ -94,7 +96,7 @@ const ProductPage = () => {
                 </h1>
               </div>
               <RatingStars rating={product.rating} />
-              <CartButtons product={product} />
+              <CartButtons product={product} style="productPage" />
             </div>
             <About about={product} />
           </div>

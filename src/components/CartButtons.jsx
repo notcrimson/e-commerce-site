@@ -1,21 +1,11 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import "../productpage.css";
-import { changeItems, delItem } from "../../../redux/cartSlice";
-// const reducer = (state, action) => {
-//   switch (action.type) {
-//     case "add": {
-//       return { itemsAdded: state.itemsAdded + 1 };
-//     }
-//     case "delete": {
-//       return { itemsAdded: state.itemsAdded - 1 };
-//     }
-//   }
-// };
+import { changeItems, delItem } from "../redux/cartSlice";
+import { ButtonStyle } from "../style/theme";
 
-const CartButtons = ({ product }) => {
+const CartButtons = ({ product, style }) => {
   const cartProduct = useSelector((state) => {
     return state.cart.products.find((pr) => pr.id === product.id);
   });
@@ -34,22 +24,6 @@ const CartButtons = ({ product }) => {
       setQuantity(null);
     }
   }, [cartProduct]);
-
-  // const [state, dispatch] = useReducer(reducer, { itemsAdded: null });
-
-  // useEffect(() => {
-  //   state.itemsAdded === 0 && setAddToCart(false);
-  // }, [state.itemsAdded]);
-
-  // const handleChangeCartClick = (e) => {
-  //   // e.target.name === "delItem" && dispatch({ type: "delete" }) ;
-  //   if (e.target.name === "delItem") {
-  //     dispatch({ type: "delete" });
-  //     return;
-  //   }
-
-  //   e.target.name === "addToCart" && setAddToCart(!addToCart);
-  // };
 
   useEffect(() => {
     if (quantity !== null) {
@@ -75,33 +49,42 @@ const CartButtons = ({ product }) => {
 
   const handleChangeItems = (e) => {
     // setQuantity((prev) => prev + 1);
-    e.target.name === "delItem"
-      ? setQuantity((prev) => prev - 1)
-      : e.target.name === "addToCart"
+
+    e.preventDefault();
+    e.target.name === "addToCart"
       ? setQuantity((prev) => prev + 1)
       : setQuantity((prev) => prev + 1);
 
     e.target.name === "addToCart" && setAddToCart(!addToCart);
   };
 
+  const del = (e) => {
+    e.preventDefault();
+    if (style === "cart" && product.quantity === 1) return;
+
+    setQuantity((prev) => prev - 1);
+  };
+
   return (
-    <div>
+    <div onClick={(e) => e.preventDefault()} className="w-full cursor-default">
       <div className="flex justify-center items-center">
         {!addToCart ? (
           <button
             name="addToCart"
             type="button"
             onClick={handleChangeItems}
-            className="border border-white rounded-full bg-secondary-300/70 px-4 py-2 hover:bg-secondary-300 w-full h-[44.5px]"
+            className={ButtonStyle[style].addToCart}
           >
             Add to Cart
           </button>
         ) : (
-          <div className="text-[27px] flex flex-row justify-between items-center border border-secondary-300 w-full rounded-full">
+          <div className={ButtonStyle[style].amountButtonBorder}>
             <button
               name="delItem"
-              onClick={handleChangeItems}
-              className="productpage__cartbuttons-changeItems rounded-s-full"
+              onClick={del}
+              className={`${ButtonStyle[style].amountButton} ${
+                style === "cart" ? "rounded-s-md" : "rounded-s-full"
+              }`}
             >
               -
             </button>
@@ -109,7 +92,9 @@ const CartButtons = ({ product }) => {
             <button
               name="addItem"
               onClick={handleChangeItems}
-              className="productpage__cartbuttons-changeItems rounded-e-full"
+              className={`${ButtonStyle[style].amountButton} ${
+                style === "cart" ? "rounded-e-md" : "rounded-e-full"
+              }`}
             >
               +
             </button>
@@ -122,6 +107,7 @@ const CartButtons = ({ product }) => {
 
 CartButtons.propTypes = {
   product: PropTypes.array,
+  style: PropTypes.string,
 };
 
 export default CartButtons;

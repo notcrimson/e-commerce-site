@@ -3,7 +3,7 @@ import { BsTrash3Fill } from "react-icons/bs";
 
 import { delItem, resetCart } from "../redux/cartSlice";
 import Price from "./Price";
-import { AmountButtons } from "../components";
+import { AmountButtons, CartButtons } from "../components";
 
 function ProductsInCart({ products, dispatch }) {
   // const discountPrice = (price, discountPercentage) => {
@@ -45,7 +45,7 @@ function ProductsInCart({ products, dispatch }) {
                   <img src={product.thumbnail} className="object-cover w-full h-full" />
                 </div>
 
-                <AmountButtons product={product} />
+                <CartButtons product={product} style="cart" />
 
                 <h1 className="text-center font-extrabold text-secondary-500">
                   <Price price={product.price} discountPercentage={product.discountPercentage} />
