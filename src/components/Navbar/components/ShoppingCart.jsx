@@ -42,7 +42,7 @@ const ShoppingCart = () => {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl ">
+              <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs  flex-col overflow-y-auto bg-white py-4 pb-6 shadow-xl ">
                 <div className="flex flex-center justify-end px-2">
                   <RiCloseLine
                     size={27}

@@ -30,10 +30,13 @@ function ProductsInCart({ products, dispatch }) {
     <div className="mt-6 mx-4 ">
       <div className="mb-6 ">
         <div className=" flex justify-center flex-col gap-y-4">
+          <p className={`${products.length && `hidden`} w-[288px] text-center`}>
+            Your cart is currently empty.
+          </p>
           {products?.map((product) => (
             <div
               key={product.id}
-              className=" flex flex-col justify-between p-2  border border-gray rounded-2xl"
+              className="relative flex flex-col  justify-between p-2  border border-gray rounded-2xl"
             >
               <h1 className="text-center">{product.title}</h1>
               <div className="flex flex-row justify-between items-center">
@@ -47,11 +50,13 @@ function ProductsInCart({ products, dispatch }) {
                   <Price price={product.price} discountPercentage={product.discountPercentage} />
                 </h1>
               </div>
-              <BsTrash3Fill
-                onClick={() => dispatch(delItem(product.id))}
-                size={18}
-                className="text-red-600 transintion duration-150 cursor-pointer hover:text-secondary-500 active:text-secondary-300"
-              />
+              <div className="flex items-end justify-end">
+                <BsTrash3Fill
+                  onClick={() => dispatch(delItem(product.id))}
+                  size={18}
+                  className=" text-red-600 transintion duration-150 cursor-pointer hover:text-secondary-500 active:text-secondary-300"
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -69,7 +74,9 @@ function ProductsInCart({ products, dispatch }) {
         </div>
       </div>
       <button
-        className="static px-4 py-1 border border-black rounded-2xl"
+        className={`${
+          !products.length && `hidden`
+        } static px-4 py-1 border border-black rounded-2xl`}
         onClick={() => dispatch(resetCart())}
       >
         clear cart

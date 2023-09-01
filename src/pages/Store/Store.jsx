@@ -138,22 +138,20 @@ const Store = () => {
           show={filterToggle}
           className="grid overflow-hidden bg-gradient"
           enter=" transition-all duration-500 ease-in-out"
-          enterTo=" grid-rows-[1fr] "
-          enterFrom=" grid-rows-[0fr] "
+          enterTo=" grid-rows-[1fr]"
+          enterFrom=" grid-rows-[0fr]"
           leave="  transition-all duration-500 ease-in-out"
           leaveTo=" grid-rows-[0fr]"
-          leaveFrom=" grid-rows-[1fr] "
+          leaveFrom=" grid-rows-[1fr]"
         >
           <div className={`flex flex-col w-full text-left items-start pl-[100px] min-h-0 `}>
-            <div className="py-6">
-              <Filters
-                data={products}
-                categories={categories}
-                selectedFilters={selectedFilters}
-                setSelectedFilters={setSelectedFilters}
-                setProducts={setProducts}
-              />
-            </div>
+            <Filters
+              data={products}
+              categories={categories}
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+              setProducts={setProducts}
+            />
           </div>
         </Transition>
 
