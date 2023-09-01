@@ -40,7 +40,7 @@ const Filters = React.memo(
     };
 
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         <button
           type="button"
           className=" border border-solid border-black rounded-full px-2 mb-[2rem]"
