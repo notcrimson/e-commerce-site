@@ -7,7 +7,7 @@ const App = () => {
     <main>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/e-commerce-site/" element={<Home />} />
         <Route path="/store" element={<Store />} />
         <Route path="/product/:productID" element={<ProductPage />} />
       </Routes>
