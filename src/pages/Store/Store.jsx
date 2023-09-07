@@ -114,7 +114,7 @@ const Store = () => {
       <div className=" page__background ">
         <h1 className="heading1 absolute py-[18px] px-[50px] text-center bg-black text-white top-[16px] left-[50%] translate-x-[-50%]  mix-blend-multiply text-[96px] font-[800]">
           Store
-        </h1>{" "}
+        </h1>
       </div>
       <div className="z-1 relative top-[6rem]">
         <div className="px-[4rem] bg-white pt-16 pb-4">
