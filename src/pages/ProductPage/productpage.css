@@ -5,7 +5,7 @@
     @apply p-2 border border-secondary-500 rounded-xl flex justify-center items-center w-[70px] h-[70px] object-center object-contain;
   }
   .marginx_query {
-    @apply lg:mx-[10%] sm:mx-[4%] xs:mx-[2%];
+    @apply lg:mx-[10%] sm:mx-[4%] xs:mx-[2%] xx:mx-[1%];
   }
   .productpage__cartbuttons-changeItems {
     @apply px-4 bg-secondary-300 border border-secondary-300;

@@ -53,15 +53,15 @@ const ProductPage = () => {
   // console.log(singleProduct);
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-hidden">
       <div className="page__background" />
       <div className="top-[6rem]  relative bg-white border-none rounded-xl mb-10 flex justify-center flex-col pt-10 pb-4 px-[4rem] marginx_query">
         <h1 className="text-2xl mb-[1rem] capitalize">{product.title}</h1>
-        <div className="flex justify-between sm:flex-row xs:flex-col">
+        <div className="flex justify-between sm:flex-row xs:flex-col max-xs:flex-col">
           <div className="#images# mb-6">
-            <img src={imgClicked} className="w-[400px] h-[400px] object-contain mb-4" />
+            <img src={imgClicked} className="w-[400px] h-[300px] object-contain mb-4" />
             <div className="images flex gap-2 w-[400px] ">
-              <div className=" grid grid-flow-row  md:grid-cols-5 xs:grid-cols-4 gap-2">
+              <div className=" grid grid-flow-row  md:grid-cols-5 xs:grid-cols-5 xx:grid-cols-3 max-xx:grid-cols-2 gap-2">
                 <img
                   src={product.thumbnail}
                   onClick={(e) => setImgClicked(e.target.src)}
@@ -82,7 +82,7 @@ const ProductPage = () => {
             </div>
           </div>
 
-          <div className="#prices# border h-full border-secondary-300 rounded-xl p-[1rem] mb-4 flex justify-between md:flex-row-reverse sm:flex-col gap-4">
+          <div className="#prices# border h-full border-secondary-300 rounded-xl p-[1rem] mb-4 flex justify-between md:flex-row-reverse sm:flex-col  max-xs:flex-col gap-4">
             <div>
               <h1 className="text-secondary-500 font-extrabold px-2 border-none rounded-xl text-2xl">
                 <Price price={product.price} discountPercentage={product.discountPercentage} />
