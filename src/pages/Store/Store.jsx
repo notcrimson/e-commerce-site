@@ -21,7 +21,7 @@ const Store = () => {
 
   const [filterToggle, setFilterToggle] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -106,7 +106,7 @@ const Store = () => {
   const searchedProducts = useMemo(() => handleSearch(products), [searchText, products]);
 
   const handleShowMore = () => {
-    setLimit(() => limit + 6);
+    setLimit(() => limit + 5);
   };
 
   return (
