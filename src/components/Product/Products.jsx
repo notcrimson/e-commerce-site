@@ -4,11 +4,14 @@ import React from "react";
 
 import { CartButtons, Price } from "../index";
 
-const Products = React.memo(({ data }) => {
+const Products = React.memo(({ data, page }) => {
   return (
     <>
       {data?.map((product) => (
-        <div key={product.id} className="w-full ">
+        <div
+          key={product.id}
+          className={`${page === "store" ? "products__style-store" : "products__style-featured"}`}
+        >
           <Link to={`/product/${product.id}`} state={{ data: product }}>
             <div className=" group transition-all duration-300 bg-secondary-300/60 hover:bg-secondary-300 ease-in-out border border-none rounded-xl my-2 h-full w-full">
               <div
@@ -54,6 +57,7 @@ const Products = React.memo(({ data }) => {
 Products.displayName = "Products";
 Products.propTypes = {
   data: PropTypes.array,
+  page: PropTypes.string,
 };
 
 export default Products;

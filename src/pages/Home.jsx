@@ -1,9 +1,10 @@
-import { Header } from "../components";
+import { Header, Featured } from "../components";
 
 const Home = () => {
   return (
     <div>
       <Header />
+      <Featured />
     </div>
   );
 };

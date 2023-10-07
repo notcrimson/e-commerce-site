@@ -3,3 +3,9 @@
 .store__section-content-container {
   @apply grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 ss:grid-cols-2;
 }
+.products__style-store {
+  @apply w-full h-full;
+}
+.products__style-featured {
+  @apply w-[300px] h-full flex-none;
+}

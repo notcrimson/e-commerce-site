@@ -54,7 +54,7 @@ const ProductPage = () => {
 
   return (
     <div className="relative overflow-x-hidden">
-      <div className="page__background" />
+      <div className="page__background h-full  w-screen fixed" />
       <div className="top-[6rem]  relative bg-white border-none rounded-xl mb-10 flex justify-center flex-col pt-10 pb-4 px-[4rem] marginx_query">
         <h1 className="text-2xl mb-[1rem] capitalize">{product.title}</h1>
         <div className="flex justify-between sm:flex-row xs:flex-col max-xs:flex-col">

@@ -10,3 +10,12 @@
     @apply transition-all duration-300 ease-in-out drop-shadow-2xl opacity-40 border border-solid border-black;
   }
 }
+
+@layer base {
+  .slides {
+    @apply w-full flex-none p-10 text-white;
+  }
+  .arrows {
+    @apply p-2 m-2 border-none rounded-3xl cursor-pointer transition-all duration-300 hover:bg-gray-400/50;
+  }
+}

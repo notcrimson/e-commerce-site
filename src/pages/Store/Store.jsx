@@ -111,7 +111,7 @@ const Store = () => {
 
   return (
     <div className="store__section  relative ">
-      <div className=" page__background ">
+      <div className=" page__background h-full  w-screen fixed">
         <h1 className="heading1 absolute py-[18px] px-[50px] text-center bg-black text-white top-[16px] left-[50%] translate-x-[-50%]  mix-blend-multiply text-[96px] font-[800]">
           Store
         </h1>
@@ -158,7 +158,7 @@ const Store = () => {
         <div className=" bg-white px-[2rem] py-[2rem] store__section-content flex flex-col ">
           <div className="bg-clouds  bg-lime-700/20 bg-blend-overlay  rounded-xl p-[2rem]  bg-no-repeat bg-cover  w-full h-full">
             <div className="store__section-content-container gap-4">
-              <Products data={searchedProducts} />
+              <Products data={searchedProducts} page="store" />
             </div>
           </div>
           <button
