@@ -16,6 +16,6 @@
     @apply w-full flex-none p-10 text-white;
   }
   .arrows {
-    @apply p-2 m-2 border-none rounded-3xl cursor-pointer transition-all duration-300 hover:bg-gray-400/50;
+    @apply p-2 m-2 border-none rounded-3xl cursor-pointer transition-all duration-300 hover:bg-gray-400/50 absolute top-[50%] -translate-x-0 translate-y-[-50%]  z-10;
   }
 }

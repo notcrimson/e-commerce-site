@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 
 import api from "../api/posts";
 import { Products } from "./index";
+import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md";
 
 const Featured = () => {
   const [products, setProducts] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await api.get("/category/motorcycle");
+        const response = await api.get("");
         setProducts(response.data.products);
       } catch (error) {
         if (error.response) {
@@ -33,6 +35,19 @@ const Featured = () => {
     fetchFeaturedProducts();
   }, []);
 
+  let box = document.getElementById("carousel-container");
+
+  const prevSlide = () => {
+    // setCurrentSlide((prev) => prev - 1);
+    let width = box.clientWidth;
+    box.scrollLeft = box.scrollLeft - width;
+  };
+
+  const nextSlide = () => {
+    // setCurrentSlide((prev) => prev + 1);
+    let width = box.clientWidth;
+    box.scrollLeft = box.scrollLeft + width;
+  };
   return (
     <div className="relative">
       <div className="p-20">
@@ -41,8 +56,27 @@ const Featured = () => {
         </h1>
       </div>
       <div className="mx-10 mb-10">
-        <div className="page__background w-full h-[550px] border-none rounded-[50px] p-5">
-          <div className="flex gap-4 overflow-x-scroll">
+        <div
+          id="featured__products-carousel"
+          className="page__background w-full h-[550px] border-none rounded-[50px] p-5 relative overflow-hidden"
+        >
+          <div className="arrows_div">
+            {currentSlide == 0 && (
+              <div className={`arrows left-0 `} onClick={prevSlide}>
+                <MdOutlineArrowBackIos size="25" />
+              </div>
+            )}
+
+            <div className="arrows right-0" onClick={nextSlide}>
+              <MdOutlineArrowForwardIos size="25" />
+            </div>
+          </div>
+
+          <div
+            id="carousel-container"
+            className="flex gap-4 transition-all duration-1000 ease-in-out overflow-x-hidden"
+            style={{ transform: `translate(-${currentSlide * 420}px)` }}
+          >
             <Products data={products} page="featured" />
           </div>
         </div>
