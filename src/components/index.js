@@ -6,5 +6,16 @@ import Price from "./Price";
 import AmountButtons from "./AmountButtons";
 import CartButtons from "./CartButtons";
 import Featured from "./Featured";
+import Categories from "./Categories";
 
-export { Navbar, Header, Products, ProductsInCart, Price, AmountButtons, CartButtons, Featured };
+export {
+  Navbar,
+  Header,
+  Products,
+  ProductsInCart,
+  Price,
+  AmountButtons,
+  CartButtons,
+  Featured,
+  Categories,
+};

@@ -1,10 +1,11 @@
-import { Header, Featured } from "../components";
+import { Header, Featured, Categories } from "../components";
 
 const Home = () => {
   return (
     <div>
       <Header />
       <Featured />
+      <Categories />
     </div>
   );
 };

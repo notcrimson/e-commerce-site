@@ -9,6 +9,9 @@
   .shop-btn:active {
     @apply transition-all duration-300 ease-in-out drop-shadow-2xl opacity-40 border border-solid border-black;
   }
+  .category:hover {
+    @apply row-span-2 col-span-2 grid-flow-row;
+  }
 }
 
 @layer base {
@@ -17,5 +20,13 @@
   }
   .arrows {
     @apply p-2 m-2 border-none rounded-3xl cursor-pointer transition-all duration-300 hover:bg-gray-400/50 absolute top-[50%] -translate-x-0 translate-y-[-50%]  z-10;
+  }
+
+  .category {
+    @apply w-full bg-secondary-300 h-full p-20 border-none rounded-2xl transition-all duration-700 ease-in-out;
+  }
+
+  .category h1 {
+    @apply text-center text-3xl font-extrabold;
   }
 }

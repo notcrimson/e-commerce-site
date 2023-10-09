@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md";
 
 import api from "../api/posts";
 import { Products } from "./index";
-import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md";
 
 const Featured = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,7 @@ const Featured = () => {
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
-        const response = await api.get("");
+        const response = await api.get("/category/motorcycle");
         setProducts(response.data.products);
       } catch (error) {
         if (error.response) {
@@ -51,11 +51,9 @@ const Featured = () => {
   return (
     <div className="relative">
       <div className="p-20">
-        <h1 className="heading1 absolute pt-[7px] pb-[11px] px-[40px] text-center bg-black text-white top-[50px] left-[50%] translate-x-[-50%]  mix-blend-multiply text-[70px] font-[800]">
-          Featured
-        </h1>
+        <h1 className="section-heading pt-[7px] pb-[11px]">Featured</h1>
       </div>
-      <div className="mx-10 mb-10">
+      <div className="mx-10 mb-20">
         <div
           id="featured__products-carousel"
           className="page__background w-full h-[550px] border-none rounded-[50px] p-5 relative overflow-hidden"
