@@ -7,24 +7,30 @@ const Categories = () => {
         <div className="p-20">
           <h1 className="section-heading pt-[8px] pb-[20px] ">Categories</h1>
         </div>
-        <div className="category__section px-20 grid grid-flow-col grid-cols-3 gap-4">
-          <div name="Technology" className="category ">
-            <h1>Technology</h1>
+        <div className="category__section px-20 grid grid-cols-3 grid-flow-row-dense gap-2 ">
+          <div name="Technology" className="group category relative ">
+            <div className="group-hover:catergory__description-b "></div>
+            <div className="absolute z-10 text-center inset-x-0 m-auto top-[50%] translate-y-[-50%] hidden group-hover:block text-xl font-extrabold">
+              <h2 className="text-white ">Something</h2>
+              <h2 className="text-white ">Something</h2>
+            </div>
+            <h1 className="group-hover:blur-md">Technology</h1>
           </div>
-          <div name="Skincare" className="category">
-            <h1>Skincare</h1>
+
+          <div name="Skincare" className="group category">
+            <h1 className="group-hover:blur-sm">Skincare</h1>
           </div>
-          <div name="Home" className="category">
-            <h1>Home</h1>
+          <div name="Home" className=" group category">
+            <h1 className="group-hover:blur-sm">Home</h1>
           </div>
-          <div name="Clothing" className="category">
-            <h1>Clothing</h1>
+          <div name="Clothing" className=" group category">
+            <h1 className="group-hover:blur-sm">Clothing</h1>
           </div>
-          <div name="Accessories" className="category">
-            <h1>Accessories</h1>
+          <div name="Accessories" className="group category">
+            <h1 className="group-hover:blur-sm">Accessories</h1>
           </div>
-          <div name="Other" className="category">
-            <h1>Other</h1>
+          <div name="Other" className="group category">
+            <h1 className="group-hover:blur-sm">Other</h1>
           </div>
         </div>
       </div>

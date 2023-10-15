@@ -10,7 +10,7 @@
     @apply transition-all duration-300 ease-in-out drop-shadow-2xl opacity-40 border border-solid border-black;
   }
   .category:hover {
-    @apply row-span-2 col-span-2 grid-flow-row;
+    @apply bg-secondary-500
   }
 }
 
@@ -23,10 +23,14 @@
   }
 
   .category {
-    @apply w-full bg-secondary-300 h-full p-20 border-none rounded-2xl transition-all duration-700 ease-in-out;
+    @apply w-full bg-secondary-300 h-full  border-none rounded-2xl transition-all duration-700 p-20;
   }
 
   .category h1 {
-    @apply text-center text-3xl font-extrabold;
+    @apply text-center text-3xl font-extrabold transition-all duration-300 ease-in;
+  }
+
+  .catergory__description-bg {
+    @apply absolute bg-black/20 w-full h-full left-0 top-0 border-none rounded-2xl transition-colors duration-300 ease-in-out;
   }
 }
