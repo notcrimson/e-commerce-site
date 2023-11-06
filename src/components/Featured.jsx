@@ -73,7 +73,7 @@ const Featured = () => {
           <div
             id="carousel-container"
             className="flex gap-4 transition-all duration-1000 ease-in-out overflow-x-hidden"
-            style={{ transform: `translate(-${currentSlide * 420}px)` }}
+            //style={{ transform: `translate(-${currentSlide * 420}px)` }}
           >
             <Products data={products} page="featured" />
           </div>

@@ -1,6 +1,10 @@
 import React from "react";
+import { useGetAllCategoriesQuery } from "../redux/apiSlice";
 
 const Categories = () => {
+  const { data } = useGetAllCategoriesQuery();
+  console.log(data);
+
   return (
     <div className="relative mb-10">
       <div className="page__background w-full  pb-20">
