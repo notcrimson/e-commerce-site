@@ -1,0 +1,34 @@
+{
+    "types":[
+        {
+            "name": "technology",
+            "categories":["smartphones", "laptops"]
+        },
+        {
+            "name": "skincare",
+            "categories":["fragrances", "skincare"]
+        },
+        {
+            "name": "home",
+            "categories":["home-decoration", "furniture", "lighting"]
+        },
+        {
+            "name": "clothing",
+            "categories":["tops", "womens-dresses", "womens-shoes", "mens-shirts", "mens-shoes"]
+        },
+        {
+            "name": "accessories",
+            "categories":[
+                "mens-watches",
+                "womens-watches",
+                "womens-bags",
+                "womens-jewellery",
+                "sunglasses"
+              ]
+        },
+        {
+            "name": "other",
+            "categories":["groceries", "automotive", "motorcycle"]
+        }
+    ]
+}
