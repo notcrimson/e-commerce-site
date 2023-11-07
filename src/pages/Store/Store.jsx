@@ -9,6 +9,7 @@ import "./store.css";
 import Filters from "../../components/Filters";
 import api from "../../api/posts";
 import { Dialog, Transition } from "@headlessui/react";
+import { useLocation } from "react-router-dom";
 
 //TODO: TRANSFER THE USEEFFECT ON MOUNT TO APP.JSX SO IT CAN FETCH FROM THERE
 //TODO: ADD PROP TO STORE DATA TO PASS DOWN THE FETCHED RESULTS FROM APP.JSX
@@ -23,6 +24,8 @@ const Store = () => {
   const [searchText, setSearchText] = useState("");
   const [limit, setLimit] = useState(10);
 
+  let location = useLocation();
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -30,7 +33,9 @@ const Store = () => {
 
         const categories = await api.get("/categories");
         setCategories(categories.data);
-        setProducts(response.data.products);
+        location.state.category === null
+          ? setProducts(response.data.products)
+          : setSelectedFilters([...selectedFilters, location.state.category]);
       } catch (error) {
         if (error.response) {
           // The request was made and the server responded with a status code
@@ -50,7 +55,7 @@ const Store = () => {
         console.log(error.config);
       }
     };
-
+    // console.log(location.state.category);
     fetchCategories();
   }, []);
 
@@ -60,6 +65,7 @@ const Store = () => {
         if (selectedFilters.length === categories.length || selectedFilters.length === 0) {
           const response = (await api.get(`?limit=${limit}`)).data.products;
           setProducts(response);
+          //TODO THIS LINE MAKES IT RENDER PRODUCTS THEN SELECTED CATEGORY FROM HOME PAGE FIX.
         } else {
           axios
             .all(

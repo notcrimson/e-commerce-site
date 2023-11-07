@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetAllCategoriesQuery } from "../redux/apiSlice";
 import { types } from "../constants/types.json";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const { data } = useGetAllCategoriesQuery();
@@ -44,8 +45,13 @@ const Categories = () => {
             <div key={type.name} className="group category relative">
               <div className="absolute z-10 text-center inset-x-0 m-auto top-[50%] translate-y-[-50%] hidden group-hover:block text-xl font-extrabold">
                 {type.categories.map((category) => (
-                  <h2 key={category} className="text-white">
-                    {category}
+                  <h2
+                    key={category}
+                    className="text-white hover:underline hover:cursor-pointer mb-1"
+                  >
+                    <Link to="/Store" state={{ category: category }}>
+                      {category}
+                    </Link>
                   </h2>
                 ))}
               </div>

@@ -30,6 +30,7 @@ const Filters = React.memo(
         }
       };
       filterItems();
+      selectedFilters.forEach((filter) => (document.getElementById(filter).checked = true));
     }, [selectedFilters]);
 
     const handleFilterToggle = () => {
